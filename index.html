@@ -1,43 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Todo List</title>
-  <link type="text/css" rel="stylesheet" href="styles.css">
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+  <link type="text/css" rel="stylesheet" href="/css/styles.css">
+
   <script src="https://rawgit.com/angular/bower-angular/master/angular.min.js"></script>
-  <script src="main.js"></script>
+  <script src="/js/main.js"></script>
 </head>
 
 <body ng-app="myApp">
   <h1 class="text-center">Todo List</h1>
   <div ng-controller="todoList">
-    <ul class="task-list" ng-repeat="item in todoItems | filter : {completed: false} | orderBy : 'created' : true">
-      <li class="task" ng-class="{urgent: item.urgent}">
-        <strong>{{item.task}}</strong>
-        <br>Created: {{item.created | date : 'medium'}}
-        <br>
-        <label>Completed:
-          <input type="checkbox" ng-model="item.completed">
-        </label>
-        <label>Urgent:
-          <input type="checkbox" ng-model="item.urgent">
-        </label>
-      </li>
-    </ul>
-    <div>
+    <div class="container">
+      <ul class="task-list list-unstyled" ng-repeat="item in todoItems | filter : {completed: false} | orderBy : 'created' : true">
+        <li class="task clearfix" ng-class="{urgent: item.urgent}">
+          <div class="pull-left">
+            <strong>{{item.task}}</strong>
+          </div>
+          <div class="pull-right">
+            Created: {{item.created | date : 'medium'}}
+            <br>
+            <label>Completed:
+              <input type="checkbox" ng-model="item.completed">
+            </label>
+            <label>Urgent:
+              <input type="checkbox" ng-model="item.urgent">
+            </label>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="container">
       <h3>New task</h3>
       <form>
-        <label>Description:
-          <input ng-model="newTask.description">
-        </label>
-        <br>
-        <label>Urgent:
-          <input type="checkbox" ng-model="newTask.urgent">
-        </label>
-        <br>
-        <input type="submit" value="Add Task" ng-click="addTodo(newTask)">
+        <div class="form-group">
+          <label>Description:
+            <input class="form-control" ng-model="newTask.description">
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Urgent:
+            <input type="checkbox" ng-model="newTask.urgent">
+          </label>
+        </div>
+        <button type="submit" class="btn btn-default" ng-click="addTodo(newTask)">Add Task</button>
     </div>
   </div>
 </body>
