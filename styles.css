@@ -1,0 +1,15 @@
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+.task {
+  padding: 5px;
+  border: 1px dotted black;
+  border-radius: 10px;
+}
+.text-center {
+  text-align: center;
+}
+.urgent {
+  border-color: red;
+}

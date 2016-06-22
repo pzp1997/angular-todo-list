@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Todo List</title>
+  <link type="text/css" rel="stylesheet" href="styles.css">
+  <script src="https://rawgit.com/angular/bower-angular/master/angular.min.js"></script>
+  <script src="main.js"></script>
+</head>
+
+<body ng-app="myApp">
+  <h1 class="text-center">Todo List</h1>
+  <div ng-controller="todoList">
+    <ul class="task-list" ng-repeat="item in todoItems | filter : {completed: false} | orderBy : 'created' : true">
+      <li class="task" ng-class="{urgent: item.urgent}">
+        <strong>{{item.task}}</strong>
+        <br>Created: {{item.created | date : 'medium'}}
+        <br>
+        <label>Completed:
+          <input type="checkbox" ng-model="item.completed">
+        </label>
+        <label>Urgent:
+          <input type="checkbox" ng-model="item.urgent">
+        </label>
+      </li>
+    </ul>
+    <div>
+      <h3>New task</h3>
+      <form>
+        <label>Description:
+          <input ng-model="newTask.description">
+        </label>
+        <br>
+        <label>Urgent:
+          <input type="checkbox" ng-model="newTask.urgent">
+        </label>
+        <br>
+        <input type="submit" value="Add Task" ng-click="addTodo(newTask)">
+    </div>
+  </div>
+</body>
+
+</html>
